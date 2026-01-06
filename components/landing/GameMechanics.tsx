@@ -23,7 +23,7 @@ export function GameMechanics() {
                   <Zap size={24} />
                 </div>
                 <div>
-                   <h3 className="text-xl font-bold text-white mb-2">Instant Dopamine Loops</h3>
+                   <h3 className="text-xl font-bold text-foreground dark:text-white mb-2">Instant Dopamine Loops</h3>
                    <p className="text-muted-foreground">Get XP for every optimized function. Level up your "Memory Management" stat. See your progress visually.</p>
                 </div>
              </div>
@@ -32,7 +32,7 @@ export function GameMechanics() {
                   <Swords size={24} />
                 </div>
                 <div>
-                   <h3 className="text-xl font-bold text-white mb-2">PvP Optimization Battles</h3>
+                   <h3 className="text-xl font-bold text-foreground dark:text-white mb-2">PvP Optimization Battles</h3>
                    <p className="text-muted-foreground">Challenge other players to refactor battles. Lowest time complexity wins the loot.</p>
                 </div>
              </div>
@@ -41,7 +41,7 @@ export function GameMechanics() {
                   <Trophy size={24} />
                 </div>
                 <div>
-                   <h3 className="text-xl font-bold text-white mb-2">Legendary Artifacts</h3>
+                   <h3 className="text-xl font-bold text-foreground dark:text-white mb-2">Legendary Artifacts</h3>
                    <p className="text-muted-foreground">Unlock rare IDE themes, profile badges, and verifiable certificates that actually look cool on LinkedIn.</p>
                 </div>
              </div>

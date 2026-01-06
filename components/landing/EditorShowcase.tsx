@@ -2,7 +2,7 @@ import { Terminal, Code2, Play } from 'lucide-react';
 
 export function EditorShowcase() {
   return (
-    <section className="py-24 px-6 border-y border-white/5 bg-[#050508]">
+    <section className="py-24 px-6 border-y border-gray-200 dark:border-white/5 bg-gray-50 dark:bg-[#050508]">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
          <div className="flex-1">
             <h2 className="text-3xl md:text-5xl font-bold font-orbitron mb-6">Real Code. <br/>Real Compiler.</h2>
@@ -11,13 +11,13 @@ export function EditorShowcase() {
             </p>
             
             <div className="grid grid-cols-2 gap-6">
-               <div className="p-4 rounded-xl bg-white/5">
+               <div className="p-4 rounded-xl bg-white dark:bg-white/5 shadow-sm dark:shadow-none border border-gray-200 dark:border-transparent">
                   <Terminal className="text-primary mb-3" />
-                  <div className="font-bold text-white">WASM Powered</div>
+                  <div className="font-bold text-gray-900 dark:text-white">WASM Powered</div>
                </div>
-               <div className="p-4 rounded-xl bg-white/5">
+               <div className="p-4 rounded-xl bg-white dark:bg-white/5 shadow-sm dark:shadow-none border border-gray-200 dark:border-transparent">
                   <Code2 className="text-secondary mb-3" />
-                  <div className="font-bold text-white">Monaco Editor</div>
+                  <div className="font-bold text-gray-900 dark:text-white">Monaco Editor</div>
                </div>
             </div>
          </div>
