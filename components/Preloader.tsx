@@ -7,7 +7,7 @@ import { Terminal } from 'lucide-react';
 export function Preloader() {
   const [isLoading, setIsLoading] = useState(true);
   const [text, setText] = useState("");
-  const fullText = "INITIALIZING SHADOWCODE PROTOCOL...";
+  const fullText = "INITIALIZING SHADOWGAME...";
 
   useEffect(() => {
     // Faster typing effect
@@ -15,12 +15,12 @@ export function Preloader() {
     const interval = setInterval(() => {
       if (currentIndex <= fullText.length) {
         setText(fullText.slice(0, currentIndex));
-        currentIndex += 2; // Double speed
+        currentIndex += 3; // Triple speed
       } else {
         clearInterval(interval);
-        setTimeout(() => setIsLoading(false), 400); // Faster exit
+        setTimeout(() => setIsLoading(false), 100); // Instant exit
       }
-    }, 30); // Faster interval
+    }, 20); // Faster interval
 
     return () => clearInterval(interval);
   }, []);
@@ -29,9 +29,9 @@ export function Preloader() {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black text-white"
-          exit={{ opacity: 0, y: -50 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black text-white"
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.4, ease: "circIn" }}
         >
           <div className="font-mono text-center">
             <motion.div 
@@ -50,7 +50,7 @@ export function Preloader() {
                  className="h-full bg-primary"
                  initial={{ width: 0 }}
                  animate={{ width: "100%" }}
-                 transition={{ duration: 1.5, ease: "easeInOut" }}
+                 transition={{ duration: 0.8, ease: "easeInOut" }}
                />
             </div>
           </div>

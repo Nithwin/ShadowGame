@@ -15,7 +15,7 @@ export function Footer() {
             <div>
               <Link href="/" className="inline-flex items-center gap-2 mb-6 group">
                   <div className="w-8 h-8 relative rounded bg-primary/10 border border-primary/20 p-1 overflow-hidden group-hover:shadow-[0_0_15px_rgba(138,43,226,0.5)] transition-all">
-                     <Image src="/assets/logo.png" alt="Logo" fill className="object-contain" />
+                     <Image src="/assets/logo.png" alt="Logo" fill sizes="32px" className="object-contain" />
                   </div>
                   <span className="text-lg font-bold tracking-tight font-orbitron text-gray-900 dark:text-white">ShadowGame</span>
               </Link>
