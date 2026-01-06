@@ -62,7 +62,7 @@ export function Hero() {
         </div>
         
         <div className="hero-element text-base sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed font-light px-4">
-          <TextReveal text="Burn your textbooks. ShadowCode turns Systems Engineering into an addictive MMORPG." className="text-center" delay={0.4} />
+          <TextReveal text="Burn your textbooks. ShadowGame turns Systems Engineering into an addictive MMORPG." className="text-center" delay={0.4} />
         </div>
         
         <div className="hero-element flex flex-col sm:flex-row items-center justify-center gap-6">

@@ -12,7 +12,7 @@ export function Navbar() {
         <div className="w-8 h-8 relative rounded bg-primary/10 border border-primary/20 p-1 overflow-hidden group-hover:shadow-[0_0_15px_rgba(138,43,226,0.5)] transition-all">
            <Image src="/assets/logo.png" alt="Logo" fill className="object-contain" />
         </div>
-        <span className="text-sm font-medium tracking-tight font-orbitron text-gray-900 dark:text-white group-hover:text-primary transition-colors">ShadowCode</span>
+        <span className="text-sm font-medium tracking-tight font-orbitron text-gray-900 dark:text-white group-hover:text-primary transition-colors">ShadowGame</span>
       </Link>
 
       <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600 dark:text-muted-foreground">

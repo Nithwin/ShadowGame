@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ShadowCode | Gamified Systems Engineering",
+  title: "ShadowGame | Gamified Systems Engineering",
   description: "Stop grinding. Start playing. A cyberpunk MMORPG for mastering low-level systems engineering.",
 };
 

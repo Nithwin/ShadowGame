@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ShadowGame | Gamified Systems Engineering
 
-## Getting Started
+![ShadowGame Banner](/public/assets/logo.png)
 
-First, run the development server:
+> **Stop Grinding. Start Playing.**  
+> ShadowGame turns low-level Systems Engineering (Rust, OS, Databases) into an addictive, high-stakes MMORPG.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![License](https://img.shields.io/badge/license-Source_Available-blue.svg)
+![Status](https://img.shields.io/badge/status-Beta-orange.svg)
+![Tech](https://img.shields.io/badge/tech-Next.js_15-black)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Mission Brief
+Traditional coding courses are boring. ShadowGame changes the game by replacing video lectures with **interactive missions**:
+- **The Cargo Hold**: Learn Rust variables & ownership.
+- **Kernel Panic**: Write a basic process scheduler.
+- **Data Heist**: optimize SQL queries against a live rival.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
+- **Core**: Next.js 15, TypeScript
+- **Style**: Tailwind CSS v4, Framer Motion, GSAP
+- **Engine**: Monaco Editor (VS Code in browser)
+- **Backend**: PostgreSQL, Prisma
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🤝 Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+We welcome operatives who want to improve the system. ShadowGame is **Source Available**, meaning you can view the code and contribute improvements!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### How to Join the Dev Squad:
+1.  Read our [Contribution Guidelines](CONTRIBUTING.md).
+2.  Fork this repository.
+3.  Create a feature branch (`feat/new-weapon`).
+4.  Submit a Pull Request.
 
-## Deploy on Vercel
+**Note**: All contributions are subject to our [License](LICENSE). You may **NOT** deploy, host, or commercialize this project independently. We rely on community contributions to make the official platform better for everyone.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+👉 **[Read the Developer Guide](docs/DEVELOPER_GUIDE.md)** for architecture details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📜 License & Rights
+
+**© 2026 ShadowGame Systems.**  
+This project is **Source Available**.
+- ✅ You **CAN** view, download, and modify the code for personal learning or contribution.
+- ❌ You **CANNOT** deploy this application publicly.
+- ❌ You **CANNOT** use this code for commercial products.
+
+See [LICENSE](LICENSE) for full details.
+
+---
+
+**System Status**: `OPERATIONAL`  
+**Current Version**: `SC-2026-X1`
