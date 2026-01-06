@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Twitter, Github, Cpu, Disc, FileCode, Shield, Terminal, Zap } from 'lucide-react';
 
 export function Footer() {
@@ -12,14 +13,16 @@ export function Footer() {
           {/* Brand Column */}
           <div className="col-span-1 md:col-span-1 flex flex-col justify-between h-full">
             <div>
-              <div className="flex items-center gap-2 mb-6 group cursor-pointer">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-purple-500/20 group-hover:shadow-purple-500/40 transition-all">
-                      <Cpu size={20} className="animate-pulse" />
+              <Link href="/" className="inline-flex items-center gap-2 mb-6 group">
+                  <div className="w-8 h-8 relative rounded bg-primary/10 border border-primary/20 p-1 overflow-hidden group-hover:shadow-[0_0_15px_rgba(138,43,226,0.5)] transition-all">
+                     <Image src="/assets/logo.png" alt="Logo" fill className="object-contain" />
                   </div>
-                  <span className="text-xl font-bold font-orbitron dark:text-white text-gray-900 tracking-wide">ShadowCode</span>
-              </div>
+                  <span className="text-lg font-bold tracking-tight font-orbitron text-gray-900 dark:text-white">ShadowGame</span>
+              </Link>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 leading-relaxed">
+                  The first MMORPG that lands you a job. Master low-level systems through high-stakes simulation.
+              </p>
               <p className="text-sm dark:text-gray-400 text-gray-600 leading-relaxed max-w-xs mb-6">
-                The premier platform for gamified systems engineering. <br/> 
                 Stop grinding. <span className="text-cyan-600 dark:text-cyan-400">Start playing.</span>
               </p>
             </div>
@@ -77,7 +80,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t dark:border-white/5 border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs dark:text-gray-600 text-gray-500 font-mono">
-              © 2026 ShadowCode Systems. All rights reserved.
+              © 2026 ShadowGame Systems. All rights reserved.
             </p>
             <div className="flex items-center gap-2 text-xs dark:text-gray-600 text-gray-500">
                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
