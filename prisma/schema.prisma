@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  xp        Int      @default(0)
+  level     Int      @default(1)
+  progress  Progress[]
+  createdAt DateTime @default(now())
+}
+
+model Game {
+  id          String   @id @default(cuid())
+  slug        String   @unique // "rust", "os", "dbms"
+  title       String
+  description String
+  levels      Level[]
+}
+
+model Level {
+  id          String   @id @default(cuid())
+  gameId      String
+  game        Game     @relation(fields: [gameId], references: [id])
+  order       Int
+  title       String
+  description String
+  content     String   // Markdown story/instruction
+  startCode   String   // Initial code
+  solution    String   // Expected solution or regex
+  xpReward    Int
+  progress    Progress[]
+}
+
+model Progress {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  levelId   String
+  level     Level    @relation(fields: [levelId], references: [id])
+  completed Boolean  @default(false)
+  code      String?  // User's solution
+  updatedAt DateTime @updatedAt
+}

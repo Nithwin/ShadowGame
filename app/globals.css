@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  
+  --font-orbitron: var(--font-orbitron);
+  --font-sans: var(--font-inter);
+}
+
+@layer base {
+  :root {
+    /* Light Theme (Mirror's Edge - Clean, Sharp, Clinical) */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 4%; /* #0A0A0F */
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 4%;
+
+    --primary: 265 89% 66%; /* Electric Violet */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 190 100% 50%; /* Cyan */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+
+    --accent: 240 5% 96%;
+    --accent-foreground: 240 10% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 265 89% 66%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark Theme (Deep Space Cyber-Luxe - Addictive, Immersive) */
+    --background: 260 50% 4%; /* #030014 - Deep Purple Void */
+    --foreground: 210 20% 98%;
+
+    --card: 260 50% 6%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 260 50% 6%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 267 100% 61%; /* #8A2BE2 - BlueViolet / Electric Purple */
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 180 100% 50%; /* #00FFFF - Electric Cyan */
+    --secondary-foreground: 260 50% 4%;
+
+    --muted: 260 30% 15%;
+    --muted-foreground: 260 20% 65%;
+
+    --accent: 260 30% 15%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 260 30% 15%;
+    --input: 260 30% 15%;
+    --ring: 267 100% 61%;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+}
+
+/* Custom Utilities */
+@utility glass {
+  @apply bg-background/40 backdrop-blur-xl border border-white/10 dark:border-white/5 shadow-2xl;
+}
+
+@utility text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-400 to-secondary;
+}
+
+@utility glow {
+  @apply shadow-[0_0_20px_rgba(138,43,226,0.5)];
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/30 rounded-full hover:bg-primary/50 transition-colors;
+}
+
+/* Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
