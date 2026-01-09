@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export function FeatureGrid() {
   return (
-    <section id="modules" className="px-6 max-w-7xl mx-auto mb-32">
+    <section id="modules" className="px-6 max-w-7xl mx-auto mb-16">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[300px]">
         
         {/* Main Card - Rust */}
@@ -59,14 +59,6 @@ export function FeatureGrid() {
            </div>
         </div>
 
-      </div>
-
-      {/* Closing CTA */}
-      <div className="text-center py-20 border-t border-border mt-20">
-        <h2 className="text-3xl font-bold mb-6 font-orbitron">Ready to compile?</h2>
-        <Link href="/signup" className="inline-flex h-12 px-8 rounded-full bg-foreground text-background font-bold items-center justify-center hover:bg-foreground/90 transition-colors">
-          Get Started Free
-        </Link>
       </div>
     </section>
   );
