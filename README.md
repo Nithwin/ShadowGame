@@ -21,7 +21,21 @@ Traditional coding courses are boring. ShadowGame changes the game by replacing 
 - **Core**: Next.js 15, TypeScript
 - **Style**: Tailwind CSS v4, Framer Motion, GSAP
 - **Engine**: Monaco Editor (VS Code in browser)
-- **Backend**: PostgreSQL, Prisma
+- **Backend**: PostgreSQL, Prisma, NextAuth.js
+- **Structure**: Modular Component Architecture (`ui`, `game`, `providers`)
+
+## 📂 Project Structure
+```
+├── app/                  # Next.js App Router (Pages & API)
+├── components/
+│   ├── ui/               # Reusable UI components (Buttons, Effects)
+│   ├── game/             # Game-specific logic (Editor, Visualizer)
+│   ├── providers/        # Context Providers (Theme, Session)
+│   └── landing/          # Landing Page sections
+├── lib/                  # Utilities & Auth config
+├── prisma/               # Database Schema & Seeds
+└── public/               # Static Assets
+```
 
 ---
 
