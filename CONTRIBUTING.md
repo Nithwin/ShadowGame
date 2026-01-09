@@ -1,69 +1,57 @@
 # Contributing to ShadowGame
 
-Welcome, Operative. 
-We appreciate your interest in upgrading the ShadowGame system. To ensure the integrity of the simulation, please follow the protocols below.
-
-## ⚠️ Important Protocol
-**ShadowGame is Source-Available Software.** 
-You are encouraged to read the code, find bugs, and submit improvements. However, you may **NOT** deploy, host, or sell this application independently. All contributions become the property of ShadowGame Systems upon submission.
-
----
+First off, thanks for taking the time to contribute! ShadowGame is a community-driven platform, and we value your help in making systems engineering accessible to everyone.
 
 ## 🛠️ How to Contribute
 
-### 1. Fork & Clone
-Fork the repository to your own GitHub account, then clone it locally:
-```bash
-git clone https://github.com/YOUR_USERNAME/shadow-game.git
-cd shadow-game
-```
+### 1. Reporting Bugs
+-   Check if the issue already exists in the "Issues" tab.
+-   If not, create a new issue.
+-   **Include**:
+    -   Browser & OS version.
+    -   Steps to reproduce.
+    -   Expected vs. Actual behavior.
+    -   Screenshots if possible.
 
-### 2. Initialize Environment
-Install dependencies (Node.js 18+ required):
+### 2. Requesting Features
+-   Open a new issue with the label `enhancement`.
+-   Explain **why** this feature is needed and how it improves the learning experience.
+
+### 3. Submitting Code
+1.  **Fork** the repository.
+2.  **Clone** your fork: `git clone https://github.com/YOUR_USERNAME/ShadowGame.git`
+3.  **Create a Branch**:
+    -   `git checkout -b feat/new-mission-type` (for features)
+    -   `git checkout -b fix/editor-crash` (for bugs)
+4.  **Install Dependencies**: `npm install`
+5.  **Make Changes**: Please follow the existing code style (Prettier/ESLint).
+6.  **Commit**: Use [Conventional Commits](https://www.conventionalcommits.org/) (e.g., `feat: add new rust level`).
+7.  **Push**: `git push origin feat/new-mission-type`
+8.  **Open a Pull Request (PR)**: Target the `main` branch.
+
+## 💻 Development Setup
+
 ```bash
+# 1. Install dependencies
 npm install
-```
 
-### 3. Create a Branch
-Always create a new branch for your specific feature or fix. Use the format `type/feature-name`:
-- `feat/new-mission-ui`
-- `fix/navbar-glitch`
-- `docs/update-readme`
+# 2. Set up Environment Variables
+cp .env.example .env
+# (Ask maintainers for local DB setup if needed, or use your own local Postgres)
 
-```bash
-git checkout -b feat/your-feature-name
-```
+# 3. specific database setup
+npx prisma generate
+npx prisma db push
+npx prisma db seed
 
-### 4. Develop & Test
-Run the development server:
-```bash
+# 4. Run the development server
 npm run dev
 ```
-Ensure your changes do not break the "Deep Space Cyber-Luxe" theme. 
-- **Light Mode**: Must be CLEAN (Gray/White/Deep Violet).
-- **Dark Mode**: Must be IMMERSIVE (Black/Neon/Purple).
 
-### 5. Commit Standards
-We use Conventional Commits. Your commit message should look like this:
-- `feat: added new magnetic button component`
-- `fix: corrected footer alignment in mobile`
-- `style: refined hero gradient colors`
+## 🎨 Code Style
+-   We use **Tailwind CSS** for styling.
+-   We use **TypeScript** for strict type safety.
+-   Please ensure no linting errors before pushing.
 
-### 6. Submit Pull Request (PR)
-Push your branch and open a PR against the `main` branch of the original repository.
-- Provide a clear description of what you changed.
-- Attach screenshots if UI changes were made.
-- Wait for code review from Mission Control.
-
----
-
-## 🎨 Coding Standards
-- **Framework**: Next.js 15+ (App Router)
-- **Styling**: Tailwind CSS v4 (No custom CSS files unless necessary).
-- **Icons**: Lucide React only.
-- **Language**: TypeScript (Strict mode). No `any` types allowed.
-
-## 🤝 Community
-Join our Discord [link-to-discord] to discuss features before building. 
-
-**Happy Hacking.**
+## ⚖️ License
+By contributing, you agree that your contributions will be licensed under the project's [LICENSE](LICENSE).

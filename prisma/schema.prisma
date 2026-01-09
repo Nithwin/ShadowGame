@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
@@ -11,47 +12,94 @@ enum Role {
   ADMIN
 }
 
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+  NIGHTMARE
+}
+
+enum Category {
+  RUST
+  OS
+  NETWORKING
+  ALGORITHMS
+}
+
+enum SubmissionStatus {
+  PENDING
+  PASSED
+  FAILED
+  ERROR
+}
+
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  password  String
-  role      Role     @default(USER)
-  xp        Int      @default(0)
-  level     Int      @default(1)
-  progress  Progress[]
-  createdAt DateTime @default(now())
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String 
+  name          String?
+  role          Role      @default(USER)
+  xp            Int       @default(0)
+  level         Int       @default(1)
+  
+  submissions   Submission[]
+  progress      UserProgress[]
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
-model Game {
-  id          String   @id @default(cuid())
-  slug        String   @unique // "rust", "os", "dbms"
+model Mission {
+  id          String    @id @default(cuid())
+  slug        String    @unique // e.g., 'rust-cargo-hold'
   title       String
-  description String
-  levels      Level[]
+  description String    @db.Text
+  difficulty  Difficulty @default(EASY)
+  category    Category   @default(RUST)
+  xpReward    Int       @default(100)
+  starterCode String?   @db.Text
+  
+  testCases   TestCase[]
+  submissions Submission[]
+  usersCompleted UserProgress[]
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
-model Level {
-  id          String   @id @default(cuid())
-  gameId      String
-  game        Game     @relation(fields: [gameId], references: [id])
-  order       Int
-  title       String
-  description String
-  content     String   // Markdown story/instruction
-  startCode   String   // Initial code
-  solution    String   // Expected solution or regex
-  xpReward    Int
-  progress    Progress[]
+model TestCase {
+  id          String  @id @default(cuid())
+  input       String  @db.Text 
+  expectedOutput String @db.Text
+  isHidden    Boolean @default(false)
+  
+  mission     Mission @relation(fields: [missionId], references: [id], onDelete: Cascade)
+  missionId   String
 }
 
-model Progress {
-  id        String   @id @default(cuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  levelId   String
-  level     Level    @relation(fields: [levelId], references: [id])
-  completed Boolean  @default(false)
-  code      String?  // User's solution
-  updatedAt DateTime @updatedAt
+model Submission {
+  id            String           @id @default(cuid())
+  code          String           @db.Text
+  status        SubmissionStatus @default(PENDING)
+  executionTime Float?           
+  createdAt     DateTime         @default(now())
+  
+  user          User             @relation(fields: [userId], references: [id])
+  userId        String
+  
+  mission       Mission          @relation(fields: [missionId], references: [id])
+  missionId     String
+}
+
+model UserProgress {
+  id          String    @id @default(cuid())
+  completedAt DateTime  @default(now())
+  
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  
+  mission     Mission   @relation(fields: [missionId], references: [id])
+  missionId   String
+
+  @@unique([userId, missionId])
 }

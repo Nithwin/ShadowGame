@@ -1,46 +1,42 @@
-'use client';
-
 import Link from 'next/link';
 import { Terminal, Cpu, Database, LogOut, Shield } from 'lucide-react';
-import { useSession, signOut } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
+import { prisma } from '@/lib/db';
+import LogoutButton from '@/components/ui/LogoutButton';
 
-export default function Home() {
-  const { data: session } = useSession();
+// Helper to get Icon based on category
+const getIcon = (category: string) => {
+  switch (category) {
+    case 'OS': return <Cpu className="w-12 h-12 text-blue-500" />;
+    case 'NETWORKING': return <Database className="w-12 h-12 text-green-500" />;
+    default: return <Terminal className="w-12 h-12 text-[#DEA584]" />;
+  }
+}
 
-  const games = [
-    {
-      slug: 'rust',
-      title: 'RustVoyage',
-      description: 'Master the Rust programming language through an epic space survival RPG.',
-      icon: <Terminal className="w-12 h-12 text-[#DEA584]" />, // Rust color-ish
-      color: 'hover:border-[#DEA584]',
-      bg: 'hover:bg-[#DEA584]/10'
-    },
-    {
-      slug: 'os',
-      title: 'KernelPanic',
-      description: 'Build your own Operating System from scratch. Manage processes and memory.',
-      icon: <Cpu className="w-12 h-12 text-blue-500" />,
-      color: 'hover:border-blue-500',
-      bg: 'hover:bg-blue-500/10'
-    },
-    {
-      slug: 'dbms',
-      title: 'QueryMaster',
-      description: 'Optimize queries and manage massive datasets in a cyberpunk database sys.',
-      icon: <Database className="w-12 h-12 text-green-500" />,
-      color: 'hover:border-green-500',
-      bg: 'hover:bg-green-500/10'
-    }
-  ];
+const getColor = (category: string) => {
+  switch (category) {
+    case 'OS': return 'hover:border-blue-500 hover:bg-blue-500/10';
+    case 'NETWORKING': return 'hover:border-green-500 hover:bg-green-500/10';
+    default: return 'hover:border-[#DEA584] hover:bg-[#DEA584]/10';
+  }
+}
+
+export default async function Dashboard() {
+  const session = await getServerSession(authOptions);
 
   if (!session) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center text-purple-500 animate-pulse">
-        INITIALIZING LINK...
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center text-red-500 font-mono">
+        ACCESS DENIED. PLEASE AUTHENTICATE.
       </div>
     );
   }
+
+  // Fetch Missions
+  const missions = await prisma.mission.findMany({
+    orderBy: { createdAt: 'desc' }
+  });
 
   return (
     <main className="min-h-screen bg-[#050505] text-gray-100 p-8 font-sans">
@@ -59,34 +55,44 @@ export default function Home() {
           )}
           <div className="bg-gray-900 px-4 py-2 rounded-full border border-gray-800">
             <span className="text-gray-400 text-sm">LEVEL</span>
-            <span className="ml-2 font-bold text-white">1</span>
+            <span className="ml-2 font-bold text-white">{session.user?.level || 1}</span>
           </div>
-          <button onClick={() => signOut()} className="text-gray-500 hover:text-white transition-colors">
-            <LogOut size={20} />
-          </button>
+          {/* Client Component for Logout */}
+          <LogoutButton />
         </div>
       </header>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-        {games.map((game) => (
-          <Link
-            href={`/game/${game.slug}`}
-            key={game.slug}
-            className={`group bg-[#0A0A0A] border border-gray-800 rounded-xl p-8 transition-all duration-300 ${game.color} ${game.bg}`}
-          >
-            <div className="mb-6 bg-gray-900/50 w-20 h-20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-              {game.icon}
-            </div>
-            <h2 className="text-2xl font-bold mb-3 group-hover:text-white transition-colors">{game.title}</h2>
-            <p className="text-gray-400 leading-relaxed group-hover:text-gray-300">
-              {game.description}
-            </p>
-            <div className="mt-8 flex items-center text-sm font-medium text-gray-500 group-hover:text-white">
-              <span>START ADVENTURE</span>
-              <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-            </div>
-          </Link>
-        ))}
+        {missions.length === 0 ? (
+          <div className="col-span-3 text-center text-gray-500 py-20 border border-dashed border-gray-800 rounded-xl">
+            NO MISSIONS DETECTED. SYSTEM STANDBY.
+          </div>
+        ) : (
+          missions.map((mission) => (
+            <Link
+              href={`/game/${mission.slug}/1`}
+              key={mission.id}
+              className={`group bg-[#0A0A0A] border border-gray-800 rounded-xl p-8 transition-all duration-300 ${getColor(mission.category)}`}
+            >
+              <div className="mb-6 bg-gray-900/50 w-20 h-20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                {getIcon(mission.category)}
+              </div>
+              <div className="flex justify-between items-start mb-2">
+                <span className="text-xs font-mono text-gray-500 border border-gray-800 px-2 py-1 rounded">{mission.difficulty}</span>
+                <span className="text-xs font-mono text-yellow-500">+{mission.xpReward} XP</span>
+              </div>
+              <h2 className="text-2xl font-bold mb-3 group-hover:text-white transition-colors">{mission.title}</h2>
+              <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 line-clamp-2">
+                {/* Strip markdown for card preview if needed, or just show raw text */}
+                {mission.description.slice(0, 100)}...
+              </p>
+              <div className="mt-8 flex items-center text-sm font-medium text-gray-500 group-hover:text-white">
+                <span>START MISSION</span>
+                <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </Link>
+          ))
+        )}
       </div>
     </main>
   );

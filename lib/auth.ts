@@ -1,15 +1,7 @@
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { PrismaClient } from '@prisma/client';
-import { PrismaPg } from '@prisma/adapter-pg';
-import { Pool } from 'pg';
+import { prisma } from '@/lib/db';
 import bcrypt from 'bcryptjs';
-
-const connectionString = process.env.DATABASE_URL;
-
-const pool = new Pool({ connectionString });
-const adapter = new PrismaPg(pool);
-const prisma = new PrismaClient({ adapter });
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -46,6 +38,8 @@ export const authOptions: NextAuthOptions = {
                     email: user.email,
                     name: user.name,
                     role: user.role,
+                    level: user.level,
+                    xp: user.xp,
                 };
             },
         }),
@@ -55,6 +49,8 @@ export const authOptions: NextAuthOptions = {
             if (session?.user) {
                 session.user.id = token.id as string;
                 session.user.role = token.role as string;
+                session.user.level = token.level as number;
+                session.user.xp = token.xp as number;
             }
             return session;
         },
@@ -62,6 +58,8 @@ export const authOptions: NextAuthOptions = {
             if (user) {
                 token.id = user.id;
                 token.role = user.role;
+                token.level = user.level;
+                token.xp = user.xp;
             }
             return token;
         },
