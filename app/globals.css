@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   html {
@@ -38,7 +39,7 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
-  
+
   --font-orbitron: var(--font-orbitron);
   --font-sans: var(--font-inter);
 }
@@ -46,8 +47,10 @@
 @layer base {
   :root {
     /* Light Theme (Clean Tech - Professional, Crisp, High Contrast) */
-    --background: 220 30% 98%; /* Soft Cool White/Gray #F5F7FA */
-    --foreground: 222 47% 11%; /* #0F172A */
+    --background: 210 40% 98%;
+    /* #F5F7FA - Soft Cool White */
+    --foreground: 222 47% 11%;
+    /* #0F172A */
 
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
@@ -55,11 +58,12 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 262 83% 58%; /* #7C3AED - Deep Violet (More readable on white) */
+    --primary: 262 83% 58%;
+    /* #7C3AED - Deep Violet */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 199 89% 48%; /* #0EA5E9 - Sky Blue (Less neon than Cyan) */
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215 16% 47%;
@@ -77,69 +81,97 @@
   }
 
   .dark {
-    /* Dark Theme (Deep Space Cyber-Luxe - Addictive, Immersive) */
-    --background: 260 50% 4%; /* #030014 - Deep Purple Void */
-    --foreground: 210 20% 98%;
+    /* Dark Theme (Premium Obsidian - Deep, Rich, Glassy) */
+    --background: 240 10% 3.9%;
+    /* #09090b - Zinc 950 (Richer than pure black) */
+    --foreground: 0 0% 98%;
 
-    --card: 260 50% 6%;
-    --card-foreground: 210 20% 98%;
+    --card: 240 10% 5.9%;
+    /* #0c0c0e - Slightly lighter than bg */
+    --card-foreground: 0 0% 98%;
 
-    --popover: 260 50% 6%;
-    --popover-foreground: 210 20% 98%;
+    --popover: 240 10% 5.9%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 267 100% 61%; /* #8A2BE2 - BlueViolet / Electric Purple */
-    --primary-foreground: 210 20% 98%;
+    --primary: 263.4 70% 50.4%;
+    /* #6d28d9 - Deep Violet */
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 180 100% 50%; /* #00FFFF - Electric Cyan */
-    --secondary-foreground: 260 50% 4%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
 
-    --muted: 260 30% 15%;
-    --muted-foreground: 260 20% 65%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
 
-    --accent: 260 30% 15%;
-    --accent-foreground: 210 20% 98%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 260 30% 15%;
-    --input: 260 30% 15%;
-    --ring: 267 100% 61%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 263.4 70% 50.4%;
   }
 }
 
 @layer base {
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-background text-foreground transition-colors duration-300 selection:bg-primary/30 selection:text-primary-foreground;
+    background-image: radial-gradient(circle at top center, hsl(var(--primary) / 0.05), transparent 40%);
   }
 }
 
 /* Custom Utilities */
 @utility glass {
-  @apply bg-background/40 backdrop-blur-xl border border-white/10 dark:border-white/5 shadow-2xl;
+  background-color: hsl(var(--background) / 0.4);
+  backdrop-filter: blur(24px);
+  border: 1px solid hsl(0 0% 100% / 0.1);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  @variant dark {
+    border-color: hsl(0 0% 100% / 0.05);
+  }
 }
 
 @utility text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-400 to-secondary;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #6d28d9, #2563eb, #7c3aed);
+  /* Darker violet/blue for light mode */
+
+  @variant dark {
+    background-image: linear-gradient(to right, hsl(var(--primary)), #a78bfa, hsl(var(--secondary)));
+  }
 }
 
 @utility glow {
-  @apply shadow-[0_0_20px_rgba(138,43,226,0.5)];
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   @apply bg-background;
 }
+
 ::-webkit-scrollbar-thumb {
   @apply bg-primary/30 rounded-full hover:bg-primary/50 transition-colors;
 }
 
 /* Keyframes */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }

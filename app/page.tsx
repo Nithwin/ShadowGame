@@ -51,7 +51,7 @@ export default function LandingPage() {
         </div>
 
         {/* Modules Section - Fixed visibility by removing heavy negative parallax */}
-        <section id="modules" className="py-24 bg-[#050508] relative z-10 overflow-hidden">
+        <section id="modules" className="py-24 relative z-10 overflow-hidden">
           {/* Reduced parallax offset to prevent cutting off */}
           <ParallaxSection offset={0}>
             <ScrollAnimation preset="rotate-up">

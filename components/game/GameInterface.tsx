@@ -52,10 +52,10 @@ export default function GameInterface({ initialCode, instructions, title, slug }
         <GameLayout title="RustVoyage" subtitle={`Mission: ${title}`}>
             <div className="flex h-[calc(100vh-64px)] overflow-hidden">
                 {/* Left: Story & Instructions */}
-                <div className="w-1/4 bg-[#0E0E0E] border-r border-gray-800 p-6 overflow-y-auto font-sans flex flex-col">
+                <div className="w-1/4 bg-muted/20 backdrop-blur-sm border-r border-border p-6 overflow-y-auto font-sans flex flex-col">
                     <div className="mb-6 flex-1">
-                        <h2 className="text-xl font-bold text-gray-100 mb-4 font-orbitron">MISSION BRIEF</h2>
-                        <div className="text-gray-400 text-sm leading-relaxed mb-4 prose prose-invert">
+                        <h2 className="text-xl font-bold text-foreground mb-4 font-orbitron">MISSION BRIEF</h2>
+                        <div className="text-muted-foreground text-sm leading-relaxed mb-4 prose prose-invert">
                             {/* Quick visual formatting for instructions since we aren't using a markdown renderer yet */}
                             <pre className="whitespace-pre-wrap font-sans">{instructions}</pre>
                         </div>
@@ -69,7 +69,7 @@ export default function GameInterface({ initialCode, instructions, title, slug }
                                 className="bg-green-500/10 border border-green-500/30 p-4 rounded-xl text-center"
                             >
                                 <CheckCircle className="w-8 h-8 text-green-500 mx-auto mb-2" />
-                                <h3 className="text-lg font-bold text-white mb-1">SYSTEM SYNCED</h3>
+                                <h3 className="text-lg font-bold text-foreground mb-1">SYSTEM SYNCED</h3>
                                 <button
                                     onClick={() => router.push('/dashboard')}
                                     className="bg-green-600 hover:bg-green-500 text-white px-6 py-2 rounded-full font-bold text-sm transition-colors w-full mt-2"
@@ -82,32 +82,32 @@ export default function GameInterface({ initialCode, instructions, title, slug }
                 </div>
 
                 {/* Middle: Code Editor */}
-                <div className="flex-1 flex flex-col bg-[#050505] relative z-10 border-r border-gray-800">
+                <div className="flex-1 flex flex-col bg-background relative z-10 border-r border-border">
                     <CodeEditor
                         initialCode={code}
                         onChange={(val) => setCode(val || '')}
                     />
                     <button
                         onClick={runCode}
-                        className="absolute bottom-4 right-4 bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-full shadow-lg shadow-blue-500/20 flex items-center gap-2 font-bold transition-all z-20 hover:scale-105"
+                        className="absolute bottom-4 right-4 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-full shadow-lg shadow-primary/20 flex items-center gap-2 font-bold transition-all z-20 hover:scale-105"
                     >
                         <Play size={18} fill="currentColor" /> EXECUTE
                     </button>
                 </div>
 
                 {/* Right: Visualizer & Output */}
-                <div className="w-1/4 bg-[#0A0A0A] flex flex-col border-l border-gray-800">
+                <div className="w-1/4 bg-card/30 backdrop-blur-sm flex flex-col border-l border-border">
                     <div className="flex-1 p-4">
-                        <h3 className="text-gray-500 text-xs font-bold mb-4 uppercase">Neural Link / Visualizer</h3>
+                        <h3 className="text-muted-foreground text-xs font-bold mb-4 uppercase">Neural Link / Visualizer</h3>
                         <MemoryVisualizer code={code} variableName="crate_id" />
                     </div>
 
-                    <div className="h-1/3 bg-black border-t border-gray-800 p-4 font-mono text-xs overflow-y-auto">
-                        <div className="text-gray-500 mb-2 border-b border-gray-800 pb-1">TERMINAL OUTPUT</div>
+                    <div className="h-1/3 bg-muted/30 border-t border-border p-4 font-mono text-xs overflow-y-auto">
+                        <div className="text-muted-foreground mb-2 border-b border-border pb-1">TERMINAL OUTPUT</div>
                         <div className="space-y-1">
-                            {output.length === 0 && <span className="text-gray-700 italic">Finding connection...</span>}
+                            {output.length === 0 && <span className="text-muted-foreground italic">Finding connection...</span>}
                             {output.map((line, i) => (
-                                <div key={i} className={`${line.includes('error') ? 'text-red-400' : 'text-gray-300'}`}>
+                                <div key={i} className={`${line.includes('error') ? 'text-destructive' : 'text-foreground'}`}>
                                     {line}
                                 </div>
                             ))}

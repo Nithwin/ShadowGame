@@ -5,8 +5,8 @@ export function PainPoints() {
     <section className="py-24 px-6 bg-muted/30 dark:bg-black/50 border-y border-gray-200 dark:border-white/5">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <p className="text-gray-400">&quot;Why does my code fork bomb?&quot;</p>
-          <p className="text-gray-500 text-sm mt-2">&quot;I hate C segmentation faults&quot;</p>
+          <p className="text-gray-500 dark:text-gray-400">&quot;Why does my code fork bomb?&quot;</p>
+          <p className="text-gray-600 dark:text-gray-500 text-sm mt-2">&quot;I hate C segmentation faults&quot;</p>
           <h2 className="text-3xl md:text-5xl font-bold font-orbitron mb-6 text-foreground">Why You Quit Coding Courses</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             The traditional education system is broken. It's designed for robots, not humans.

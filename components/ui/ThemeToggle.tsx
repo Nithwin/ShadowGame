@@ -14,7 +14,7 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-        <div className="w-9 h-9 rounded-full bg-background border border-border" />
+      <div className="w-9 h-9 rounded-full bg-background border border-border" />
     );
   }
 
