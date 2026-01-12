@@ -1,5 +1,5 @@
 # ShadowGame | Gamified Systems Engineering
-- Taking learning to next level
+## Taking learning to next level
 
 
 ![ShadowGame Banner](/public/assets/logo.png)
